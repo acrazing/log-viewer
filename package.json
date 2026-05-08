@@ -2,13 +2,13 @@
   "name": "log-viewer",
   "version": "1.3.0",
   "product": "Log Viewer",
-  "description": "A handy log and code pretty printing and highlighting tool, supporting all formats such as text, JSON, ANSI, XML, etc.",
+  "description": "Pretty-print raw JSON, ANSI logs, YAML, HTML, JS, CSS, and other source-like text directly in Chrome.",
   "private": true,
   "license": "MIT",
-  "homepage": "https://github.com/amos-project/log-viewer",
+  "homepage": "https://github.com/acrazing/log-viewer",
   "repository": {
     "type": "git",
-    "url": "https://github.com/amos-project/log-viewer.git"
+    "url": "https://github.com/acrazing/log-viewer.git"
   },
   "demo": {
     "stack": "Error: Demo error stack\n    at open (chrome-extension://nkocljmdlnpkgjcndooaggbcbjnnpnon/contentScript.bundle.js:166:41)\n    at prepareElem (chrome-extension://nkocljmdlnpkgjcndooaggbcbjnnpnon/contentScript.bundle.js:211:13)\n    at prepareElem (chrome-extension://nkocljmdlnpkgjcndooaggbcbjnnpnon/contentScript.bundle.js:227:16)\n    at render (chrome-extension://nkocljmdlnpkgjcndooaggbcbjnnpnon/contentScript.bundle.js:192:16)\n    at chrome-extension://nkocljmdlnpkgjcndooaggbcbjnnpnon/contentScript.bundle.js:287:16",

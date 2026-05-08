@@ -2,39 +2,26 @@
   "manifest_version": 3,
   "name": "Log Viewer",
   "version": "1.3.0",
-  "description": "A handy log and code pretty printing and highlighting tool, supporting all formats such as text, JSON, ANSI, XML, etc.",
+  "description": "Pretty-print raw JSON, ANSI logs, YAML, HTML, JS, CSS, and other source-like text directly in Chrome.",
   "background": {
     "service_worker": "background.bundle.js"
   },
-  "homepage_url": "https://github.com/amos-project/log-viewer",
+  "homepage_url": "https://github.com/acrazing/log-viewer",
   "content_security_policy": {
     "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
   },
   "action": {
     "default_icon": "icon.png"
   },
-  "permissions": [
-    "contextMenus",
-    "webRequest"
-  ],
-  "host_permissions": [
-    "http://*/*",
-    "https://*/*",
-    "<all_urls>"
-  ],
+  "permissions": ["contextMenus", "webRequest"],
+  "host_permissions": ["http://*/*", "https://*/*", "<all_urls>"],
   "icons": {
     "128": "icon.png"
   },
   "content_scripts": [
     {
-      "matches": [
-        "http://*/*",
-        "https://*/*",
-        "<all_urls>"
-      ],
-      "js": [
-        "contentScript.bundle.js"
-      ]
+      "matches": ["http://*/*", "https://*/*", "<all_urls>"],
+      "js": ["contentScript.bundle.js"]
     }
   ]
 }
