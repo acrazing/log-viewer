@@ -652,10 +652,14 @@ document.addEventListener('keydown', async (e) => {
     lastTime = 0;
     return;
   }
+  if (document.getSelection()?.toString()) {
+    e.preventDefault();
+  }
   if (lastKey !== oldKey) {
     return;
   }
   if (lastTime - oldTime < 300) {
+    e.preventDefault();
     const action = accepts[e.key];
     if (action === 'full') {
       htmlElem?.classList.toggle('full');
