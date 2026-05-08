@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>RawLens - Inspect raw JSON, ANSI logs, and source text in Chrome</title>
+    <title>RawLens - Advanced formatting for messy JSON from anywhere in Chrome</title>
     <meta
       name="description"
-      content="RawLens is a Chrome extension for inspecting raw JSON, ANSI logs, YAML, HTML, JavaScript, CSS, SQL, Markdown, diffs, and other source-like text."
+      content="RawLens pretty-prints messy JSON from selected text, hovered page elements, clipboard content, page source, and raw pages in Chrome."
     />
     <meta property="og:title" content="RawLens" />
     <meta
       property="og:description"
-      content="Inspect raw JSON, ANSI logs, YAML, HTML, JavaScript, CSS, and other source-like text directly in Chrome."
+      content="Advanced formatting for messy JSON from selections, page elements, clipboard content, and raw pages in Chrome."
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="assets/img/screen-json-1280.png" />
@@ -27,6 +27,7 @@
       <nav aria-label="Primary navigation">
         <a href="#formats">Formats</a>
         <a href="#workflow">Workflow</a>
+        <a href="#use-cases">Use cases</a>
         <a href="#privacy">Privacy</a>
         <a
           class="nav-action"
@@ -39,11 +40,11 @@
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow">Chrome extension for raw developer data</p>
+          <p class="eyebrow">Chrome extension for messy JSON and raw developer data</p>
           <h1 id="hero-title">RawLens</h1>
           <p class="hero-lede">
-            Inspect raw JSON, ANSI logs, YAML, HTML, JavaScript, CSS, and other source-like text
-            directly in Chrome.
+            Pretty-print messy JSON from selected text, hovered page elements, clipboard content,
+            page source, and raw pages without leaving Chrome.
           </p>
           <div class="hero-actions" aria-label="Primary actions">
             <a
@@ -64,17 +65,17 @@
           <h2 id="problem-title">Stop pasting sensitive output into random online formatters.</h2>
           <div class="problem-grid">
             <article>
-              <h3>API responses</h3>
+              <h3>Nested JSON strings</h3>
               <p>
-                Turn raw JSON and nested error payloads into highlighted, foldable output without
-                leaving the page.
+                Expand JSON-looking string fields such as <code>{"foo":"{\"bar\":1}"}</code> into
+                readable structured data.
               </p>
             </article>
             <article>
-              <h3>CI output</h3>
+              <h3>JSON from anywhere</h3>
               <p>
-                Render ANSI terminal colors from build logs, test output, and copied command-line
-                traces.
+                Inspect selected text, hovered DOM nodes, clipboard content, raw pages, page source,
+                or page HTML.
               </p>
             </article>
             <article>
@@ -85,6 +86,31 @@
               </p>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section class="demo" aria-labelledby="demo-title">
+        <div class="section-inner demo-layout">
+          <div>
+            <p class="section-kicker">Short demo</p>
+            <h2 id="demo-title">A fast path from messy payload to readable output.</h2>
+            <p>
+              Use the demo clip on launch posts, README, Product Hunt, and the Chrome Web Store
+              gallery. It keeps the story focused on the main workflow: JSON from anywhere, nested
+              string fields expanded locally.
+            </p>
+          </div>
+          <video
+            class="demo-video"
+            autoplay
+            loop
+            muted
+            playsinline
+            poster="assets/img/screen-json-1280.png"
+            aria-label="RawLens demo video"
+          >
+            <source src="assets/img/rawlens-demo.mp4" type="video/mp4" />
+          </video>
         </div>
       </section>
 
@@ -127,6 +153,29 @@
             <div><kbd>cc</kbd><span>Auto-detect current page source</span></div>
             <div><kbd>xx</kbd><span>ANSI view for page text</span></div>
             <div><kbd>ff</kbd><span>Toggle full-screen mode</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="use-cases" class="use-cases" aria-labelledby="use-cases-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="section-kicker">Searchable use cases</p>
+            <h2 id="use-cases-title">Focused guides for the workflows people search for.</h2>
+          </div>
+          <div class="use-case-grid">
+            <a href="nested-json-string-formatter.html">
+              <h3>Nested JSON string formatter</h3>
+              <p>Pretty-print JSON fields that contain escaped JSON payloads.</p>
+            </a>
+            <a href="pretty-print-json-from-clipboard-chrome.html">
+              <h3>Pretty print JSON from clipboard</h3>
+              <p>Use <kbd>pp</kbd> to inspect copied debug output locally in Chrome.</p>
+            </a>
+            <a href="format-selected-json-on-page.html">
+              <h3>Format selected JSON on a page</h3>
+              <p>Use <kbd>vv</kbd> for selected text or the hovered DOM element.</p>
+            </a>
           </div>
         </div>
       </section>

@@ -1,8 +1,8 @@
 {
   "name": "rawlens",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "product": "RawLens",
-  "description": "Inspect raw JSON, ANSI logs, YAML, HTML, JS, CSS, and source-like text directly in Chrome.",
+  "description": "Pretty-print messy JSON from selections, page elements, clipboard content, and raw pages in Chrome.",
   "private": true,
   "license": "MIT",
   "homepage": "https://rawlens.github.io/rawlens/",

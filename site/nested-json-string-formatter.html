@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nested JSON String Formatter for Chrome | RawLens</title>
+    <meta
+      name="description"
+      content="Pretty-print escaped JSON string fields and nested API payloads directly in Chrome with RawLens."
+    />
+    <link
+      rel="canonical"
+      href="https://rawlens.github.io/rawlens/nested-json-string-formatter.html"
+    />
+    <meta property="og:title" content="Nested JSON String Formatter for Chrome" />
+    <meta
+      property="og:description"
+      content="RawLens expands escaped JSON string fields into readable structured data directly in Chrome."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/img/screen-json-1280.png" />
+    <link rel="icon" href="assets/img/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="RawLens home">
+        <img src="assets/img/icon.svg" alt="" />
+        <span>RawLens</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="index.html#formats">Formats</a>
+        <a href="index.html#workflow">Workflow</a>
+        <a href="index.html#use-cases">Use cases</a>
+        <a
+          class="nav-action"
+          href="https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib"
+          >Install</a
+        >
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="section-inner page-hero-layout">
+          <div>
+            <p class="section-kicker">Nested JSON string formatter</p>
+            <h1>Pretty-print JSON inside JSON strings.</h1>
+            <p class="hero-lede">
+              RawLens detects escaped JSON payloads inside string fields and formats the nested value
+              as readable structured data directly in Chrome.
+            </p>
+            <div class="hero-actions">
+              <a
+                class="button primary"
+                href="https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib"
+                >Add to Chrome</a
+              >
+              <a class="button secondary" href="https://github.com/RawLens/rawlens"
+                >View on GitHub</a
+              >
+            </div>
+          </div>
+          <div class="code-compare" aria-label="Nested JSON before and after">
+            <figure class="code-card">
+              <figcaption>Before</figcaption>
+              <pre><code>{"foo":"{\"bar\":1}","status":"error"}</code></pre>
+            </figure>
+            <figure class="code-card">
+              <figcaption>After</figcaption>
+              <pre><code>{
+  "foo": {
+    "bar": 1
+  },
+  "status": "error"
+}</code></pre>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="section-inner page-copy">
+          <h2>Built for real API and log payloads.</h2>
+          <p>
+            Production logs and API errors often wrap the interesting payload in a JSON string. Most
+            formatters clean up the outer object but leave the inner body escaped. RawLens expands
+            those JSON-looking strings so request metadata, webhook bodies, upstream responses, and
+            error details are easier to read.
+          </p>
+          <div class="use-case-grid">
+            <article>
+              <h3>From raw pages</h3>
+              <p>Open a JSON response in Chrome and RawLens can format it in place.</p>
+            </article>
+            <article>
+              <h3>From selections</h3>
+              <p>Select a payload on any page and press <kbd>vv</kbd>.</p>
+            </article>
+            <article>
+              <h3>From clipboard</h3>
+              <p>Copy a log or API body and press <kbd>pp</kbd> to inspect it locally.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>RawLens</span>
+      <a href="index.html">Home</a>
+      <a href="https://github.com/RawLens/rawlens">GitHub</a>
+      <a href="https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib"
+        >Chrome Web Store</a
+      >
+    </footer>
+  </body>
+</html>

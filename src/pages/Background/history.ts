@@ -3,20 +3,32 @@
  * @author junbao <junbao@moego.pet>
  */
 
-import { HistoryListItem, HistoryRecord, HistoryRecordInput } from '../../shared/types';
+import {
+  HistoryListItem,
+  HistoryRecord,
+  HistoryRecordInput,
+  HistoryReviewState,
+} from '../../shared/types';
 
 const DB_NAME = 'log-viewer-history';
-const DB_VERSION = 4;
+const DB_VERSION = 5;
 const RECORD_STORE = 'records';
 const ITEM_STORE = 'items';
+const META_STORE = 'meta';
 const TIME_INDEX = 'time';
 const CONTENT_KEY_INDEX = 'contentKey';
+const REVIEW_META_KEY = 'review-prompt';
 const FNV_64_OFFSET = 0xcbf29ce484222325n;
 const FNV_64_PRIME = 0x100000001b3n;
 const FNV_64_MASK = 0xffffffffffffffffn;
 
 interface StoredHistoryRecord extends HistoryRecord {
   contentKey: string;
+}
+
+interface MetaRecord<T = unknown> {
+  key: string;
+  value: T;
 }
 
 function getContentKey(content: string) {
@@ -72,6 +84,12 @@ function openHistoryDb(): Promise<IDBDatabase> {
       } else {
         itemStore = tx!.objectStore(ITEM_STORE);
         shouldBackfillItems = event.oldVersion < 3;
+      }
+
+      if (!db.objectStoreNames.contains(META_STORE)) {
+        db.createObjectStore(META_STORE, {
+          keyPath: 'key',
+        });
       }
 
       if (shouldBackfillItems || event.oldVersion < 4) {
@@ -266,6 +284,71 @@ export function deleteHistoryRecord(id: number): Promise<void> {
 
         tx.objectStore(RECORD_STORE).delete(id);
         tx.objectStore(ITEM_STORE).delete(id);
+      })
+  );
+}
+
+export function getReviewPromptState(): Promise<HistoryReviewState> {
+  return openHistoryDb().then(
+    (db) =>
+      new Promise<HistoryReviewState>((resolve, reject) => {
+        const tx = db.transaction(META_STORE, 'readonly');
+        let state: HistoryReviewState = { dismissed: false };
+        const request = tx.objectStore(META_STORE).get(REVIEW_META_KEY);
+
+        tx.oncomplete = () => {
+          db.close();
+          resolve(state);
+        };
+        tx.onabort = () => {
+          db.close();
+          reject(dbError(tx.error));
+        };
+        tx.onerror = () => {
+          db.close();
+          reject(dbError(tx.error));
+        };
+
+        request.onsuccess = () => {
+          if (request.result) {
+            state = (request.result as MetaRecord<HistoryReviewState>).value;
+          }
+        };
+      })
+  );
+}
+
+export function dismissReviewPrompt(
+  reason: HistoryReviewState['reason'] = 'dismiss'
+): Promise<HistoryReviewState> {
+  const state: HistoryReviewState = {
+    dismissed: true,
+    dismissedAt: Date.now(),
+    reason,
+  };
+
+  return openHistoryDb().then(
+    (db) =>
+      new Promise<HistoryReviewState>((resolve, reject) => {
+        const tx = db.transaction(META_STORE, 'readwrite');
+
+        tx.oncomplete = () => {
+          db.close();
+          resolve(state);
+        };
+        tx.onabort = () => {
+          db.close();
+          reject(dbError(tx.error));
+        };
+        tx.onerror = () => {
+          db.close();
+          reject(dbError(tx.error));
+        };
+
+        tx.objectStore(META_STORE).put({
+          key: REVIEW_META_KEY,
+          value: state,
+        } satisfies MetaRecord<HistoryReviewState>);
       })
   );
 }

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Format Selected JSON on Any Page in Chrome | RawLens</title>
+    <meta
+      name="description"
+      content="Select messy JSON on any web page, or hover an element, and pretty-print it locally in Chrome with RawLens."
+    />
+    <link
+      rel="canonical"
+      href="https://rawlens.github.io/rawlens/format-selected-json-on-page.html"
+    />
+    <meta property="og:title" content="Format Selected JSON on Any Page in Chrome" />
+    <meta
+      property="og:description"
+      content="RawLens pretty-prints selected text, hovered DOM elements, clipboard content, and raw pages."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/img/screen-json-1280.png" />
+    <link rel="icon" href="assets/img/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="RawLens home">
+        <img src="assets/img/icon.svg" alt="" />
+        <span>RawLens</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="index.html#formats">Formats</a>
+        <a href="index.html#workflow">Workflow</a>
+        <a href="index.html#use-cases">Use cases</a>
+        <a
+          class="nav-action"
+          href="https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib"
+          >Install</a
+        >
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="section-inner page-hero-layout">
+          <div>
+            <p class="section-kicker">Selection and element JSON formatter</p>
+            <h1>Format the JSON fragment you found on the page.</h1>
+            <p class="hero-lede">
+              Select a messy payload, or hover the DOM element that contains it, then press
+              <kbd>vv</kbd>. RawLens opens a readable local view without changing page order or
+              uploading content.
+            </p>
+            <div class="hero-actions">
+              <a
+                class="button primary"
+                href="https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib"
+                >Add to Chrome</a
+              >
+              <a class="button secondary" href="pretty-print-json-from-clipboard-chrome.html"
+                >Clipboard workflow</a
+              >
+            </div>
+          </div>
+          <figure class="page-media">
+            <img src="assets/img/screen-json-1280.png" alt="RawLens selection formatting result" />
+            <figcaption>
+              Selection and hovered-element formatting are one shortcut away.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="section-inner page-copy">
+          <h2>Useful when only one blob matters.</h2>
+          <p>
+            Debug payloads often sit inside docs, admin pages, dashboards, incident notes, or copied
+            issue comments. RawLens reads the selected text first; if there is no selection, it uses
+            the hovered page element. That keeps the formatting target precise.
+          </p>
+          <div class="use-case-grid">
+            <article>
+              <h3>Selected text</h3>
+              <p>Highlight the exact payload and press <kbd>vv</kbd>.</p>
+            </article>
+            <article>
+              <h3>Hovered element</h3>
+              <p>Move your pointer over the element and press <kbd>vv</kbd>.</p>
+            </article>
+            <article>
+              <h3>Local history</h3>
+              <p>Recent views stay in the History panel for quick reopening.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>RawLens</span>
+      <a href="index.html">Home</a>
+      <a href="https://github.com/RawLens/rawlens">GitHub</a>
+      <a href="https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib"
+        >Chrome Web Store</a
+      >
+    </footer>
+  </body>
+</html>

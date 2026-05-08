@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "RawLens",
   "short_name": "RawLens",
-  "version": "1.4.1",
-  "description": "Inspect raw JSON, ANSI logs, YAML, HTML, JS, CSS, and source-like text directly in Chrome.",
+  "version": "1.4.2",
+  "description": "Pretty-print messy JSON from selections, page elements, clipboard content, and raw pages in Chrome.",
   "background": {
     "service_worker": "background.bundle.js"
   },

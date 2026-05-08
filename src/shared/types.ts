@@ -36,6 +36,12 @@ export interface HistoryRecord extends HistoryRecordInput {
 
 export type HistoryListItem = Omit<HistoryRecord, 'content'>;
 
+export interface HistoryReviewState {
+  dismissed: boolean;
+  dismissedAt?: number;
+  reason?: 'dismiss' | 'open-review';
+}
+
 export type HistoryAction =
   | {
       type: 'history-add';
@@ -51,6 +57,16 @@ export type HistoryAction =
   | {
       type: 'history-delete';
       id: number;
+    }
+  | {
+      type: 'history-review-state';
+    }
+  | {
+      type: 'history-review-dismiss';
+      reason: 'dismiss' | 'open-review';
+    }
+  | {
+      type: 'history-review-open';
     };
 
 export interface JsonViewAction {

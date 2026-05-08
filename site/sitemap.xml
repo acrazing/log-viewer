@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://rawlens.github.io/rawlens/</loc>
+    <lastmod>2026-05-08</lastmod>
+  </url>
+  <url>
+    <loc>https://rawlens.github.io/rawlens/nested-json-string-formatter.html</loc>
+    <lastmod>2026-05-08</lastmod>
+  </url>
+  <url>
+    <loc>https://rawlens.github.io/rawlens/pretty-print-json-from-clipboard-chrome.html</loc>
+    <lastmod>2026-05-08</lastmod>
+  </url>
+  <url>
+    <loc>https://rawlens.github.io/rawlens/format-selected-json-on-page.html</loc>
+    <lastmod>2026-05-08</lastmod>
+  </url>
+  <url>
+    <loc>https://rawlens.github.io/rawlens/demos/json.html</loc>
+    <lastmod>2026-05-08</lastmod>
+  </url>
+  <url>
+    <loc>https://rawlens.github.io/rawlens/demos/ansi.html</loc>
+    <lastmod>2026-05-08</lastmod>
+  </url>
+</urlset>

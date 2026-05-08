@@ -127,7 +127,8 @@
 
 #json-view-container .log-viewer-history.collapsed .log-viewer-history-title,
 #json-view-container .log-viewer-history.collapsed .log-viewer-history-status,
-#json-view-container .log-viewer-history.collapsed .log-viewer-history-list {
+#json-view-container .log-viewer-history.collapsed .log-viewer-history-list,
+#json-view-container .log-viewer-history.collapsed .log-viewer-history-review {
   display: none;
 }
 
@@ -266,6 +267,58 @@
   -webkit-line-clamp: 3;
   white-space: normal;
   word-break: break-word;
+}
+
+#json-view-container .log-viewer-history-review {
+  display: block;
+  margin: 0 8px 10px;
+  padding: 9px;
+  border: 1px solid #303946;
+  border-radius: 6px;
+  background: #151d27;
+}
+
+#json-view-container .log-viewer-history-review:empty {
+  display: none;
+}
+
+#json-view-container .log-viewer-history-review-copy {
+  display: block;
+  color: #dce7f6;
+  font-size: 11px;
+  line-height: 15px;
+  white-space: normal;
+}
+
+#json-view-container .log-viewer-history-review-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+#json-view-container .log-viewer-history-review-button {
+  display: inline-flex;
+  min-height: 22px;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 7px;
+  border: 1px solid #3d4652;
+  border-radius: 4px;
+  color: #c8d0d8;
+  background: #202733;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+#json-view-container .log-viewer-history-review-button.primary {
+  border-color: #4f78b7;
+  color: #f5f9ff;
+  background: #24446f;
+}
+
+#json-view-container .log-viewer-history-review-button:hover {
+  color: #fff;
+  background: #303947;
 }
 
 #json-view-container a {

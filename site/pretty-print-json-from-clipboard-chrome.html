@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pretty Print JSON from Clipboard in Chrome | RawLens</title>
+    <meta
+      name="description"
+      content="Use RawLens to pretty-print JSON from your clipboard in Chrome, including nested JSON string fields and copied debug output."
+    />
+    <link
+      rel="canonical"
+      href="https://rawlens.github.io/rawlens/pretty-print-json-from-clipboard-chrome.html"
+    />
+    <meta property="og:title" content="Pretty Print JSON from Clipboard in Chrome" />
+    <meta
+      property="og:description"
+      content="Copy messy JSON or debug output, press pp, and inspect it locally in Chrome."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/img/screen-json-1280.png" />
+    <link rel="icon" href="assets/img/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="RawLens home">
+        <img src="assets/img/icon.svg" alt="" />
+        <span>RawLens</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="index.html#formats">Formats</a>
+        <a href="index.html#workflow">Workflow</a>
+        <a href="index.html#use-cases">Use cases</a>
+        <a
+          class="nav-action"
+          href="https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib"
+          >Install</a
+        >
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="section-inner page-hero-layout">
+          <div>
+            <p class="section-kicker">Clipboard JSON formatter</p>
+            <h1>Pretty-print copied JSON without leaving Chrome.</h1>
+            <p class="hero-lede">
+              Copy an API response, debug log, or escaped JSON payload, then press
+              <kbd>pp</kbd>. RawLens opens a local formatted view and stores the inspection in local
+              History.
+            </p>
+            <div class="hero-actions">
+              <a
+                class="button primary"
+                href="https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib"
+                >Add to Chrome</a
+              >
+              <a class="button secondary" href="nested-json-string-formatter.html"
+                >Nested JSON example</a
+              >
+            </div>
+          </div>
+          <figure class="page-media">
+            <img src="assets/img/screen-json-1280.png" alt="RawLens formatted JSON view" />
+            <figcaption>Clipboard payloads become readable views inside the current tab.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="section-inner page-copy">
+          <h2>A safer flow for copied production output.</h2>
+          <p>
+            Clipboard formatting is useful when the source is a terminal, issue tracker, chat thread,
+            dashboard, or internal tool. RawLens runs locally in the browser, so copied logs do not
+            need to be pasted into a third-party formatter.
+          </p>
+          <div class="shortcut-list page-shortcuts">
+            <div><kbd>pp</kbd><span>Pretty-print JSON from the clipboard</span></div>
+            <div><kbd>vv</kbd><span>Pretty-print selected text or the hovered element</span></div>
+            <div><kbd>xx</kbd><span>Render ANSI text content with terminal colors</span></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>RawLens</span>
+      <a href="index.html">Home</a>
+      <a href="https://github.com/RawLens/rawlens">GitHub</a>
+      <a href="https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib"
+        >Chrome Web Store</a
+      >
+    </footer>
+  </body>
+</html>

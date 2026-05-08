@@ -15,6 +15,8 @@ import { errorContent } from './utils';
 import {
   addHistoryRecord,
   deleteHistoryRecord,
+  dismissReviewPrompt,
+  getReviewPromptState,
   getHistoryRecord,
   listHistoryRecords,
 } from './history';
@@ -74,6 +76,8 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 });
 
 const contentTypeMap = new Map<number, string>();
+const REVIEW_URL =
+  'https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib/reviews';
 
 chrome.webRequest.onHeadersReceived.addListener(
   (details) => {
@@ -145,6 +149,27 @@ chrome.runtime.onMessage.addListener(
     if (message.type === 'history-delete') {
       deleteHistoryRecord(message.id).then(
         () => sendResponse({ ok: true }),
+        (e) => sendResponse(messageError(e))
+      );
+      return true;
+    }
+
+    if (message.type === 'history-review-state') {
+      getReviewPromptState().then(sendResponse, (e) => sendResponse(messageError(e)));
+      return true;
+    }
+
+    if (message.type === 'history-review-dismiss') {
+      dismissReviewPrompt(message.reason).then(sendResponse, (e) => sendResponse(messageError(e)));
+      return true;
+    }
+
+    if (message.type === 'history-review-open') {
+      dismissReviewPrompt('open-review').then(
+        (state) => {
+          chrome.tabs.create({ url: REVIEW_URL });
+          sendResponse(state);
+        },
         (e) => sendResponse(messageError(e))
       );
       return true;

@@ -2,19 +2,19 @@
 
 # RawLens
 
-Inspect raw JSON, ANSI logs, YAML, HTML, JavaScript, CSS, and other source-like text directly in Chrome.
+Advanced formatting for messy JSON from anywhere in Chrome.
 
 RawLens is a privacy-friendly Chrome extension for developers who often open unreadable raw content in the browser:
-API responses, CI output, copied production logs, config files, DOM text, page source, and page HTML. It turns those
-sources into highlighted, readable views and keeps a local history so you can reopen recent inspections without sending
-content anywhere.
+API responses, copied production logs, selected DOM text, clipboard snippets, page source, page HTML, and raw pages. It
+pretty-prints nested JSON string fields like `{"foo":"{\"bar\":1}"}`, turns raw sources into highlighted readable views,
+and keeps a local history so you can reopen recent inspections without sending content anywhere.
 
 ## Why Use It
 
 - Read raw JSON error logs with stack traces, nested JSON strings, and escaped newlines.
+- Pretty-print JSON from selected text, hovered page elements, clipboard content, raw pages, page source, or page HTML.
 - Render ANSI terminal colors from CI logs, build logs, and copied command output.
 - Auto-format source-like pages such as YAML, JSON, JavaScript, CSS, Markdown, SQL, diffs, and XML.
-- Inspect selected text, hovered DOM nodes, clipboard content, the current page source, or the current page HTML.
 - Reopen recent views from the local History panel without uploading logs.
 - Use quick shortcuts instead of copying raw content into a separate online formatter.
 
@@ -23,6 +23,12 @@ content anywhere.
 [![Chrome Extension](https://github.com/user-attachments/assets/ad7c5fd4-5b2d-4b68-b3ec-82e88d76b10e)](https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib)
 
 Website: <https://rawlens.github.io/rawlens/>
+
+Focused guides:
+
+- <https://rawlens.github.io/rawlens/nested-json-string-formatter.html>
+- <https://rawlens.github.io/rawlens/pretty-print-json-from-clipboard-chrome.html>
+- <https://rawlens.github.io/rawlens/format-selected-json-on-page.html>
 
 ## Showcase
 

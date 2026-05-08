@@ -5,6 +5,7 @@ import {
   HistoryListItem,
   HistoryRecord,
   HistoryRecordInput,
+  HistoryReviewState,
   HistorySourceType,
   JsonViewAction,
   JsonViewReadyAction,
@@ -15,6 +16,7 @@ import commonStyle from './index.css?raw';
 import Port = chrome.runtime.Port;
 
 const EXCERPT_LIMIT = 240;
+const REVIEW_PROMPT_MIN_HISTORY = 8;
 
 interface RenderOptions {
   src?: 'clipboard';
@@ -107,6 +109,7 @@ let historyElem: HTMLElement | undefined;
 let historyToggleElem: HTMLButtonElement | undefined;
 let historyListElem: HTMLDivElement | undefined;
 let historyStatusElem: HTMLDivElement | undefined;
+let historyReviewElem: HTMLDivElement | undefined;
 let port: Port | undefined;
 let activeHistoryId: number | undefined;
 let historyCollapsed = false;
@@ -134,6 +137,7 @@ const close = () => {
   historyToggleElem = void 0;
   historyListElem = void 0;
   historyStatusElem = void 0;
+  historyReviewElem = void 0;
   activeHistoryId = void 0;
   port?.disconnect();
   port = void 0;
@@ -239,7 +243,10 @@ function ensureShell() {
   historyListElem = document.createElement('div');
   historyListElem.className = 'log-viewer-history-list';
 
-  historyElem.append(header, historyStatusElem, historyListElem);
+  historyReviewElem = document.createElement('div');
+  historyReviewElem.className = 'log-viewer-history-review';
+
+  historyElem.append(header, historyStatusElem, historyListElem, historyReviewElem);
   htmlElem.append(main, historyElem);
   setHistoryCollapsed(historyCollapsed);
 }
@@ -435,6 +442,83 @@ function renderHistoryItems(items: HistoryListItem[]) {
     entry.append(row, text);
     historyListElem.appendChild(entry);
   }
+
+  void renderReviewPrompt(items.length);
+}
+
+async function renderReviewPrompt(historyCount: number) {
+  if (!historyReviewElem) {
+    return;
+  }
+
+  historyReviewElem.innerHTML = '';
+  if (historyCount < REVIEW_PROMPT_MIN_HISTORY) {
+    return;
+  }
+
+  let state: HistoryReviewState;
+  try {
+    state = await sendRuntimeMessage<HistoryReviewState>({
+      type: 'history-review-state',
+    });
+  } catch (e) {
+    return;
+  }
+
+  if (state.dismissed || !historyReviewElem) {
+    return;
+  }
+
+  const copy = document.createElement('div');
+  copy.className = 'log-viewer-history-review-copy';
+  copy.textContent = 'RawLens helping? A short review helps other developers find it.';
+
+  const actions = document.createElement('div');
+  actions.className = 'log-viewer-history-review-actions';
+
+  const reviewButton = document.createElement('button');
+  reviewButton.type = 'button';
+  reviewButton.className = 'log-viewer-history-review-button primary';
+  reviewButton.textContent = 'Review';
+  reviewButton.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    try {
+      await sendRuntimeMessage<HistoryReviewState>({
+        type: 'history-review-open',
+      });
+      if (historyReviewElem) {
+        historyReviewElem.innerHTML = '';
+      }
+    } catch (e) {
+      if (historyStatusElem) {
+        historyStatusElem.textContent = 'Review link failed';
+      }
+    }
+  });
+
+  const dismissButton = document.createElement('button');
+  dismissButton.type = 'button';
+  dismissButton.className = 'log-viewer-history-review-button';
+  dismissButton.textContent = 'Dismiss';
+  dismissButton.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    try {
+      await sendRuntimeMessage<HistoryReviewState>({
+        type: 'history-review-dismiss',
+        reason: 'dismiss',
+      });
+      if (historyReviewElem) {
+        historyReviewElem.innerHTML = '';
+      }
+    } catch (e) {
+      if (historyReviewElem) {
+        historyReviewElem.innerHTML = '';
+      }
+    }
+  });
+
+  actions.append(reviewButton, dismissButton);
+  historyReviewElem.append(copy, actions);
 }
 
 function getHistoryRenderType(record: HistoryRecord): JsonViewAction['type'] {
