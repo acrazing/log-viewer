@@ -27,11 +27,48 @@ interface TargetSource {
   sourceType: HistorySourceType;
 }
 
+interface RenderSource extends TargetSource {
+  contentType: string;
+  renderType: JsonViewAction['type'];
+}
+
+function isJsonViewNode(node: Node | null | undefined) {
+  return !!node && !!htmlElem?.contains(node);
+}
+
+function getSelectionText() {
+  const selection = document.getSelection();
+  if (!selection?.rangeCount) {
+    return '';
+  }
+  if (isJsonViewNode(selection.anchorNode) || isJsonViewNode(selection.focusNode)) {
+    return '';
+  }
+  return selection.toString().trim();
+}
+
+function getElementText(element: HTMLElement | undefined) {
+  return excludeJsonView(() => {
+    if (
+      element &&
+      element.ownerDocument === document &&
+      element.isConnected &&
+      !isJsonViewNode(element)
+    ) {
+      const text = element.innerText || element.textContent || '';
+      if (text.trim()) {
+        return text;
+      }
+    }
+    return document.body?.innerText || document.body?.textContent || '';
+  });
+}
+
 export async function getTargetText(targetElement: HTMLElement | undefined | 'clipboard') {
   if (targetElement === 'clipboard') {
     return await navigator.clipboard.readText();
   }
-  return document.getSelection()?.toString()?.trim() || targetElement?.innerText || '';
+  return getSelectionText() || getElementText(targetElement);
 }
 
 async function getTargetSource(src?: 'clipboard'): Promise<TargetSource> {
@@ -42,7 +79,7 @@ async function getTargetSource(src?: 'clipboard'): Promise<TargetSource> {
     };
   }
 
-  const selectedText = document.getSelection()?.toString()?.trim();
+  const selectedText = getSelectionText();
   if (selectedText) {
     return {
       content: selectedText,
@@ -51,7 +88,7 @@ async function getTargetSource(src?: 'clipboard'): Promise<TargetSource> {
   }
 
   return {
-    content: targetElement?.innerText || '',
+    content: getElementText(targetElement),
     sourceType: 'node',
   };
 }
@@ -442,7 +479,8 @@ async function showHistoryRecord(id: number) {
   activeHistoryId = record.id;
   renderHistoryItems(lastHistoryItems);
 
-  const task = prepareElem('history-view');
+  const task = nextTaskId();
+  prepareElem('history-view');
   if (contentElem) {
     contentElem.textContent = `Loading (${task})...`;
   }
@@ -457,9 +495,12 @@ async function showHistoryRecord(id: number) {
 
 let taskId = 0;
 
-function prepareElem(view: string): number {
-  open(view);
+function nextTaskId(): number {
   return ++taskId;
+}
+
+function prepareElem(view: string) {
+  open(view);
 }
 
 async function showJsonView(
@@ -516,17 +557,14 @@ async function showJsonView(
   port.postMessage(action);
 }
 
-async function render(action: ContextEvent['action'], options: RenderOptions = {}) {
-  const id = prepareElem(action);
-  activeHistoryId = void 0;
-  if (contentElem) {
-    contentElem.textContent = `Loading (${id})...`;
-  }
-
-  let content = '';
+async function getRenderSource(
+  action: ContextEvent['action'],
+  options: RenderOptions
+): Promise<RenderSource> {
   let contentType = '';
   let renderType: JsonViewAction['type'] = 'code';
   let sourceType: HistorySourceType = options.sourceType || 'code';
+  let content = '';
 
   switch (action) {
     case 'json-view': {
@@ -560,12 +598,42 @@ async function render(action: ContextEvent['action'], options: RenderOptions = {
     }
   }
 
+  return {
+    content,
+    contentType,
+    renderType,
+    sourceType,
+  };
+}
+
+async function render(action: ContextEvent['action'], options: RenderOptions = {}) {
+  const id = nextTaskId();
+  activeHistoryId = void 0;
+  const source = await getRenderSource(action, options);
+
+  if (taskId !== id) {
+    return;
+  }
+
+  prepareElem(action);
+  if (contentElem) {
+    contentElem.textContent = `Loading (${id})...`;
+  }
+
+  const content = source.content.trim();
+  if (!content) {
+    if (contentElem) {
+      contentElem.textContent = 'No content found.';
+    }
+    return;
+  }
+
   if (options.saveHistory !== false) {
     try {
       await addHistory({
         time: Date.now(),
-        contentType: formatHistoryContentType(action, contentType, location.href),
-        sourceType,
+        contentType: formatHistoryContentType(action, source.contentType, location.href),
+        sourceType: source.sourceType,
         excerpt: excerpt(content),
         content,
         url: location.href,
@@ -577,7 +645,7 @@ async function render(action: ContextEvent['action'], options: RenderOptions = {
     }
   }
 
-  await showJsonView(id, renderType, content, contentType);
+  await showJsonView(id, source.renderType, content, source.contentType);
 }
 
 const accepts: Record<string, ContextEvent['action'] | 'full'> = {
