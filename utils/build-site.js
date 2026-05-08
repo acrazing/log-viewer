@@ -4,6 +4,7 @@ const path = require('path');
 const root = path.resolve(__dirname, '..');
 const siteDir = path.join(root, 'site');
 const outDir = path.join(root, 'dist-site');
+const examplesDir = path.join(root, 'docs/examples');
 
 async function main() {
   await fs.remove(outDir);
@@ -13,6 +14,7 @@ async function main() {
       return !src.endsWith('-full.png');
     },
   });
+  await fs.copy(examplesDir, path.join(outDir, 'examples'));
   await fs.writeFile(path.join(outDir, '.nojekyll'), '');
 }
 
