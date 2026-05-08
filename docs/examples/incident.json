@@ -1,0 +1,37 @@
+{
+  "service": "checkout-api",
+  "environment": "production",
+  "status": "error",
+  "requestId": "req_7f9c2d1a",
+  "durationMs": 842,
+  "trace": [
+    "Error: Payment gateway timeout",
+    "    at chargeCustomer (src/payments/stripe.ts:118:17)",
+    "    at async createOrder (src/orders/create.ts:84:9)",
+    "    at async POST /api/orders"
+  ],
+  "customer": {
+    "id": "cus_42",
+    "plan": "pro",
+    "region": "us-west-2"
+  },
+  "payload": {
+    "retryable": true,
+    "nested": "{\"gateway\":\"stripe\",\"code\":\"ETIMEDOUT\",\"attempt\":3}",
+    "items": [
+      {
+        "sku": "lens-pro",
+        "quantity": 1
+      },
+      {
+        "sku": "usage-pack",
+        "quantity": 4
+      }
+    ]
+  },
+  "hints": [
+    "Inspect nested JSON strings",
+    "Keep this payload local",
+    "Share a screenshot instead of raw customer data"
+  ]
+}

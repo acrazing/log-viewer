@@ -29,6 +29,6 @@ git tag "v$version"
 
 rm -rf build
 yarn build
-rm -rf "$HOME/Downloads/log-viewer-"*
+rm -rf "$HOME/Downloads/rawlens-"*
 cd build
-zip -r "$HOME/Downloads/log-viewer-$version.zip" -r .
+zip -r "$HOME/Downloads/rawlens-$version.zip" -r .

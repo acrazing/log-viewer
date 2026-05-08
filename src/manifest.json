@@ -1,12 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "Log Viewer",
-  "version": "1.3.0",
-  "description": "Pretty-print raw JSON, ANSI logs, YAML, HTML, JS, CSS, and other source-like text directly in Chrome.",
+  "name": "RawLens",
+  "short_name": "RawLens",
+  "version": "1.4.0",
+  "description": "Inspect raw JSON, ANSI logs, YAML, HTML, JS, CSS, and source-like text directly in Chrome.",
   "background": {
     "service_worker": "background.bundle.js"
   },
-  "homepage_url": "https://acrazing.github.io/log-viewer/",
+  "homepage_url": "https://rawlens.github.io/rawlens/",
   "content_security_policy": {
     "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
   },

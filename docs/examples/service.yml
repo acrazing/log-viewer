@@ -1,0 +1,21 @@
+service: rawlens-ingest
+environment: staging
+owner: developer-tools
+features:
+  historyPanel: true
+  ansiRenderer: true
+  sourceAutoDetect: true
+limits:
+  maxRecordSize: 104857600
+  historyStorage: indexeddb
+routes:
+  - path: /api/orders
+    format: json
+    inspectWith: vv
+  - path: /build/logs
+    format: ansi
+    inspectWith: xx
+privacy:
+  uploads: false
+  analytics: false
+  localOnly: true

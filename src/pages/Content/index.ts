@@ -319,15 +319,6 @@ function formatHistoryTime(time: number) {
   });
 }
 
-function formatHistoryUrl(url: string) {
-  try {
-    const u = new URL(url);
-    return `${u.host}${u.pathname}`;
-  } catch {
-    return url;
-  }
-}
-
 function createBadge(text: string, className = '') {
   const badge = document.createElement('span');
   badge.className = `log-viewer-history-badge ${className}`.trim();
@@ -368,7 +359,11 @@ function renderHistoryItems(items: HistoryListItem[]) {
 
     const badges = document.createElement('div');
     badges.className = 'log-viewer-history-badges';
-    badges.append(createBadge(item.contentType || 'code'), createBadge(item.sourceType, 'source'));
+    badges.append(
+      createBadge(item.contentType || 'code'),
+      createBadge(item.sourceType, 'source'),
+      createBadge(formatHistoryTime(item.time), 'time')
+    );
 
     const deleteButton = document.createElement('button');
     deleteButton.className = 'log-viewer-history-delete';
@@ -400,11 +395,7 @@ function renderHistoryItems(items: HistoryListItem[]) {
     text.className = 'log-viewer-history-excerpt';
     text.textContent = item.excerpt || '(empty)';
 
-    const meta = document.createElement('div');
-    meta.className = 'log-viewer-history-meta';
-    meta.textContent = `${formatHistoryTime(item.time)} | ${formatHistoryUrl(item.url)}`;
-
-    entry.append(row, text, meta);
+    entry.append(row, text);
     historyListElem.appendChild(entry);
   }
 }

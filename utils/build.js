@@ -6,7 +6,6 @@ process.env.ASSET_PATH = '/';
 var webpack = require('webpack'),
   config = require('../webpack.config');
 
-
 config.mode = 'production';
 
 webpack(config, function (err) {

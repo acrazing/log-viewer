@@ -1,0 +1,11 @@
+RawLens deploy #1842
+INFO checkout-api: installing dependencies
+PASS 128 unit tests completed in 7.42s
+WARN cache hit ratio dropped below 80%
+FAIL smoke test /api/orders returned 504
+
+Trace
+  at waitForHealthyTarget (deploy/healthcheck.ts:42:11)
+  at promoteCanary (deploy/release.ts:91:7)
+
+Next rollback canary, inspect gateway latency, retry deploy

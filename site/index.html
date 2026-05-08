@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Log Viewer - Pretty-print raw JSON and ANSI logs in Chrome</title>
+    <title>RawLens - Inspect raw JSON, ANSI logs, and source text in Chrome</title>
     <meta
       name="description"
-      content="Log Viewer is a Chrome extension for pretty-printing raw JSON, ANSI logs, YAML, HTML, JavaScript, CSS, SQL, Markdown, diffs, and other source-like text."
+      content="RawLens is a Chrome extension for inspecting raw JSON, ANSI logs, YAML, HTML, JavaScript, CSS, SQL, Markdown, diffs, and other source-like text."
     />
-    <meta property="og:title" content="Log Viewer" />
+    <meta property="og:title" content="RawLens" />
     <meta
       property="og:description"
-      content="Pretty-print raw JSON, ANSI logs, YAML, HTML, JavaScript, CSS, and other source-like text directly in Chrome."
+      content="Inspect raw JSON, ANSI logs, YAML, HTML, JavaScript, CSS, and other source-like text directly in Chrome."
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="assets/img/screen-json-1280.png" />
@@ -20,9 +20,9 @@
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="Log Viewer home">
+      <a class="brand" href="#top" aria-label="RawLens home">
         <img src="assets/img/icon.svg" alt="" />
-        <span>Log Viewer</span>
+        <span>RawLens</span>
       </a>
       <nav aria-label="Primary navigation">
         <a href="#formats">Formats</a>
@@ -30,7 +30,7 @@
         <a href="#privacy">Privacy</a>
         <a
           class="nav-action"
-          href="https://chromewebstore.google.com/detail/log-viewer/lbnkfmnolbefifdccejjijdgdipnfaib"
+          href="https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib"
           >Install</a
         >
       </nav>
@@ -39,19 +39,19 @@
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow">Chrome extension for readable developer logs</p>
-          <h1 id="hero-title">Log Viewer</h1>
+          <p class="eyebrow">Chrome extension for raw developer data</p>
+          <h1 id="hero-title">RawLens</h1>
           <p class="hero-lede">
-            Pretty-print raw JSON, ANSI logs, YAML, HTML, JavaScript, CSS, and other source-like
-            text directly in Chrome.
+            Inspect raw JSON, ANSI logs, YAML, HTML, JavaScript, CSS, and other source-like text
+            directly in Chrome.
           </p>
           <div class="hero-actions" aria-label="Primary actions">
             <a
               class="button primary"
-              href="https://chromewebstore.google.com/detail/log-viewer/lbnkfmnolbefifdccejjijdgdipnfaib"
+              href="https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib"
               >Add to Chrome</a
             >
-            <a class="button secondary" href="https://github.com/acrazing/log-viewer"
+            <a class="button secondary" href="https://github.com/RawLens/rawlens"
               >View on GitHub</a
             >
           </div>
@@ -60,8 +60,8 @@
 
       <section class="problem band" aria-labelledby="problem-title">
         <div class="section-inner">
-          <p class="section-kicker">Built for the tabs developers actually open</p>
-          <h2 id="problem-title">Stop pasting logs into random online formatters.</h2>
+          <p class="section-kicker">Built for the raw tabs developers actually open</p>
+          <h2 id="problem-title">Stop pasting sensitive output into random online formatters.</h2>
           <div class="problem-grid">
             <article>
               <h3>API responses</h3>
@@ -78,7 +78,7 @@
               </p>
             </article>
             <article>
-              <h3>Config files</h3>
+              <h3>Source files</h3>
               <p>
                 Auto-format YAML, Markdown, SQL, patches, diffs, XML, JavaScript, CSS, and HTML when
                 Chrome opens them as text.
@@ -92,12 +92,12 @@
         <div class="section-inner">
           <div class="section-heading">
             <p class="section-kicker">Format coverage</p>
-            <h2 id="formats-title">Readable views for the messy formats.</h2>
+            <h2 id="formats-title">Readable views for messy raw content.</h2>
           </div>
           <div class="media-grid">
             <figure>
               <img src="assets/img/screen-json-1280.png" alt="Formatted JSON log view" />
-              <figcaption>JSON logs, stack traces, and escaped strings</figcaption>
+              <figcaption>JSON payloads, stack traces, and escaped strings</figcaption>
             </figure>
             <figure>
               <img src="assets/img/screen-ansi-1280.png" alt="ANSI log colors rendered in Chrome" />
@@ -115,9 +115,9 @@
         <div class="section-inner workflow-layout">
           <div>
             <p class="section-kicker">Fast from anywhere</p>
-            <h2 id="workflow-title">Use the source you already have.</h2>
+            <h2 id="workflow-title">Inspect the source you already have.</h2>
             <p>
-              Log Viewer works from selected text, hovered DOM nodes, clipboard content, full page
+              RawLens works from selected text, hovered DOM nodes, clipboard content, full page
               source, and page HTML. Recent entries stay available in a local History panel.
             </p>
           </div>
@@ -135,9 +135,9 @@
         <div class="section-inner privacy-layout">
           <div>
             <p class="section-kicker">Local by default</p>
-            <h2 id="privacy-title">Your logs stay in your browser.</h2>
+            <h2 id="privacy-title">Your raw content stays in your browser.</h2>
             <p>
-              Formatting and history run locally. Log Viewer does not collect logs, send them to a
+              Formatting and history run locally. RawLens does not collect logs, send them to a
               server, sell data, or track your content.
             </p>
           </div>
@@ -154,31 +154,29 @@
         <div class="section-inner install-layout">
           <div>
             <p class="section-kicker">Install</p>
-            <h2 id="install-title">Add Log Viewer to Chrome.</h2>
+            <h2 id="install-title">Add RawLens to Chrome.</h2>
             <p>
-              Keep a readable log viewer one shortcut away for the next raw API response, CI trace,
-              or copied production error.
+              Keep a readable inspection lens one shortcut away for the next raw API response, CI
+              trace, or copied production error.
             </p>
           </div>
           <div class="install-actions">
             <a
               class="button primary"
-              href="https://chromewebstore.google.com/detail/log-viewer/lbnkfmnolbefifdccejjijdgdipnfaib"
+              href="https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib"
               >Install from Chrome Web Store</a
             >
-            <a class="button secondary" href="https://github.com/acrazing/log-viewer"
-              >Star on GitHub</a
-            >
+            <a class="button secondary" href="https://github.com/RawLens/rawlens">Star on GitHub</a>
           </div>
         </div>
       </section>
     </main>
 
     <footer>
-      <span>Log Viewer</span>
-      <a href="https://github.com/acrazing/log-viewer">GitHub</a>
-      <a href="https://github.com/acrazing/log-viewer/issues">Issues</a>
-      <a href="https://chromewebstore.google.com/detail/log-viewer/lbnkfmnolbefifdccejjijdgdipnfaib"
+      <span>RawLens</span>
+      <a href="https://github.com/RawLens/rawlens">GitHub</a>
+      <a href="https://github.com/RawLens/rawlens/issues">Issues</a>
+      <a href="https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib"
         >Chrome Web Store</a
       >
     </footer>

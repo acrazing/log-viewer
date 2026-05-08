@@ -1,14 +1,14 @@
 {
-  "name": "log-viewer",
-  "version": "1.3.0",
-  "product": "Log Viewer",
-  "description": "Pretty-print raw JSON, ANSI logs, YAML, HTML, JS, CSS, and other source-like text directly in Chrome.",
+  "name": "rawlens",
+  "version": "1.4.0",
+  "product": "RawLens",
+  "description": "Inspect raw JSON, ANSI logs, YAML, HTML, JS, CSS, and source-like text directly in Chrome.",
   "private": true,
   "license": "MIT",
-  "homepage": "https://acrazing.github.io/log-viewer/",
+  "homepage": "https://rawlens.github.io/rawlens/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acrazing/log-viewer.git"
+    "url": "https://github.com/RawLens/rawlens.git"
   },
   "demo": {
     "stack": "Error: Demo error stack\n    at open (chrome-extension://nkocljmdlnpkgjcndooaggbcbjnnpnon/contentScript.bundle.js:166:41)\n    at prepareElem (chrome-extension://nkocljmdlnpkgjcndooaggbcbjnnpnon/contentScript.bundle.js:211:13)\n    at prepareElem (chrome-extension://nkocljmdlnpkgjcndooaggbcbjnnpnon/contentScript.bundle.js:227:16)\n    at render (chrome-extension://nkocljmdlnpkgjcndooaggbcbjnnpnon/contentScript.bundle.js:192:16)\n    at chrome-extension://nkocljmdlnpkgjcndooaggbcbjnnpnon/contentScript.bundle.js:287:16",
