@@ -1,0 +1,72 @@
+name: Bug report
+description: Report a reproducible RawLens issue
+title: '[Bug]: '
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please use redacted or synthetic data only.
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe the bug and what you expected instead.
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: Input source
+      options:
+        - Raw page
+        - Selection
+        - Hovered element
+        - Clipboard
+        - Page source
+        - Page HTML
+        - History
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: content-type
+    attributes:
+      label: Content type or file extension
+      placeholder: application/json, .js, .yaml, ANSI log, etc.
+  - type: textarea
+    id: sample
+    attributes:
+      label: Minimal redacted sample
+      description: Paste only the smallest synthetic or redacted sample needed to reproduce the issue.
+      render: text
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Press ...
+        3. See ...
+    validations:
+      required: true
+  - type: input
+    id: rawlens-version
+    attributes:
+      label: RawLens version
+      placeholder: '1.5.0'
+    validations:
+      required: true
+  - type: input
+    id: chrome-version
+    attributes:
+      label: Chrome version and OS
+      placeholder: Chrome 124 on macOS 14
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context
+      description: Screenshots, console errors, or notes. Redact sensitive data.

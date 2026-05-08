@@ -1,0 +1,47 @@
+name: Feature request
+description: Suggest an improvement for RawLens
+title: '[Feature]: '
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What debugging or inspection workflow should RawLens improve?
+      placeholder: I often need to ...
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the behavior you would like.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Nested JSON formatting
+        - Selection or hovered element capture
+        - Clipboard workflow
+        - Source detection
+        - ANSI or log rendering
+        - History
+        - Website or docs
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Optional. Mention workarounds or other tools you tried.
+  - type: textarea
+    id: examples
+    attributes:
+      label: Example input
+      description: Optional. Use only redacted or synthetic examples.
+      render: text

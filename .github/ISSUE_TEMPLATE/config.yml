@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/RawLens/rawlens/security/advisories/new
+    about: Please report security issues privately instead of opening a public issue.
+  - name: Chrome Web Store listing
+    url: https://chromewebstore.google.com/detail/rawlens/lbnkfmnolbefifdccejjijdgdipnfaib
+    about: Install or review the published Chrome extension.
