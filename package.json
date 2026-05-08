@@ -1,6 +1,6 @@
 {
   "name": "rawlens",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "product": "RawLens",
   "description": "Inspect raw JSON, ANSI logs, YAML, HTML, JS, CSS, and source-like text directly in Chrome.",
   "private": true,
