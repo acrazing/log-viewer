@@ -3,7 +3,6 @@ const path = require('path');
 const env = require('./utils/env');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const ASSET_PATH = process.env.ASSET_PATH || '/';
 
@@ -73,7 +72,6 @@ const options = {
       .concat(['.ts', '.tsx', '.js', '.jsx', '.css']),
   },
   plugins: [
-    new CleanWebpackPlugin({ verbose: false }),
     new webpack.ProgressPlugin(),
     // expose and write the allowed env vars on the compiled bundle
     new webpack.EnvironmentPlugin(['NODE_ENV']),
