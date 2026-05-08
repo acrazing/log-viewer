@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "RawLens",
   "short_name": "RawLens",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "Pretty-print messy JSON from selections, page elements, clipboard content, and raw pages in Chrome.",
   "background": {
     "service_worker": "background.bundle.js"
@@ -14,15 +14,28 @@
   "action": {
     "default_icon": "icon.png"
   },
-  "permissions": ["contextMenus", "webRequest"],
-  "host_permissions": ["http://*/*", "https://*/*", "<all_urls>"],
+  "permissions": [
+    "contextMenus",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*",
+    "<all_urls>"
+  ],
   "icons": {
     "128": "icon.png"
   },
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*", "<all_urls>"],
-      "js": ["contentScript.bundle.js"]
+      "matches": [
+        "http://*/*",
+        "https://*/*",
+        "<all_urls>"
+      ],
+      "js": [
+        "contentScript.bundle.js"
+      ]
     }
   ]
 }

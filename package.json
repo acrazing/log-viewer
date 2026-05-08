@@ -1,6 +1,6 @@
 {
   "name": "rawlens",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "product": "RawLens",
   "description": "Pretty-print messy JSON from selections, page elements, clipboard content, and raw pages in Chrome.",
   "private": true,
