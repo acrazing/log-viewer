@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Log Viewer - Pretty-print raw JSON and ANSI logs in Chrome</title>
+    <meta
+      name="description"
+      content="Log Viewer is a Chrome extension for pretty-printing raw JSON, ANSI logs, YAML, HTML, JavaScript, CSS, SQL, Markdown, diffs, and other source-like text."
+    />
+    <meta property="og:title" content="Log Viewer" />
+    <meta
+      property="og:description"
+      content="Pretty-print raw JSON, ANSI logs, YAML, HTML, JavaScript, CSS, and other source-like text directly in Chrome."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/img/screen-json-1280.png" />
+    <link rel="icon" href="assets/img/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Log Viewer home">
+        <img src="assets/img/icon.svg" alt="" />
+        <span>Log Viewer</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#formats">Formats</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#privacy">Privacy</a>
+        <a
+          class="nav-action"
+          href="https://chromewebstore.google.com/detail/log-viewer/lbnkfmnolbefifdccejjijdgdipnfaib"
+          >Install</a
+        >
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Chrome extension for readable developer logs</p>
+          <h1 id="hero-title">Log Viewer</h1>
+          <p class="hero-lede">
+            Pretty-print raw JSON, ANSI logs, YAML, HTML, JavaScript, CSS, and other source-like
+            text directly in Chrome.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a
+              class="button primary"
+              href="https://chromewebstore.google.com/detail/log-viewer/lbnkfmnolbefifdccejjijdgdipnfaib"
+              >Add to Chrome</a
+            >
+            <a class="button secondary" href="https://github.com/acrazing/log-viewer"
+              >View on GitHub</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="problem band" aria-labelledby="problem-title">
+        <div class="section-inner">
+          <p class="section-kicker">Built for the tabs developers actually open</p>
+          <h2 id="problem-title">Stop pasting logs into random online formatters.</h2>
+          <div class="problem-grid">
+            <article>
+              <h3>API responses</h3>
+              <p>
+                Turn raw JSON and nested error payloads into highlighted, foldable output without
+                leaving the page.
+              </p>
+            </article>
+            <article>
+              <h3>CI output</h3>
+              <p>
+                Render ANSI terminal colors from build logs, test output, and copied command-line
+                traces.
+              </p>
+            </article>
+            <article>
+              <h3>Config files</h3>
+              <p>
+                Auto-format YAML, Markdown, SQL, patches, diffs, XML, JavaScript, CSS, and HTML when
+                Chrome opens them as text.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="formats" class="showcase" aria-labelledby="formats-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="section-kicker">Format coverage</p>
+            <h2 id="formats-title">Readable views for the messy formats.</h2>
+          </div>
+          <div class="media-grid">
+            <figure>
+              <img src="assets/img/screen-json-1280.png" alt="Formatted JSON log view" />
+              <figcaption>JSON logs, stack traces, and escaped strings</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/img/screen-ansi-1280.png" alt="ANSI log colors rendered in Chrome" />
+              <figcaption>ANSI colors from CI and terminal output</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/img/screen-yaml-1280.png" alt="Formatted YAML document" />
+              <figcaption>YAML and source-like text auto-formatted</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow" class="workflow band" aria-labelledby="workflow-title">
+        <div class="section-inner workflow-layout">
+          <div>
+            <p class="section-kicker">Fast from anywhere</p>
+            <h2 id="workflow-title">Use the source you already have.</h2>
+            <p>
+              Log Viewer works from selected text, hovered DOM nodes, clipboard content, full page
+              source, and page HTML. Recent entries stay available in a local History panel.
+            </p>
+          </div>
+          <div class="shortcut-list" aria-label="Keyboard shortcuts">
+            <div><kbd>vv</kbd><span>JSON from selection or hovered node</span></div>
+            <div><kbd>pp</kbd><span>JSON from clipboard</span></div>
+            <div><kbd>cc</kbd><span>Auto-detect current page source</span></div>
+            <div><kbd>xx</kbd><span>ANSI view for page text</span></div>
+            <div><kbd>ff</kbd><span>Toggle full-screen mode</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="privacy" class="privacy" aria-labelledby="privacy-title">
+        <div class="section-inner privacy-layout">
+          <div>
+            <p class="section-kicker">Local by default</p>
+            <h2 id="privacy-title">Your logs stay in your browser.</h2>
+            <p>
+              Formatting and history run locally. Log Viewer does not collect logs, send them to a
+              server, sell data, or track your content.
+            </p>
+          </div>
+          <ul>
+            <li>Open source and MIT licensed</li>
+            <li>Local IndexedDB history</li>
+            <li>No server-side formatter</li>
+            <li>No analytics inside the extension</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="install band" aria-labelledby="install-title">
+        <div class="section-inner install-layout">
+          <div>
+            <p class="section-kicker">Install</p>
+            <h2 id="install-title">Add Log Viewer to Chrome.</h2>
+            <p>
+              Keep a readable log viewer one shortcut away for the next raw API response, CI trace,
+              or copied production error.
+            </p>
+          </div>
+          <div class="install-actions">
+            <a
+              class="button primary"
+              href="https://chromewebstore.google.com/detail/log-viewer/lbnkfmnolbefifdccejjijdgdipnfaib"
+              >Install from Chrome Web Store</a
+            >
+            <a class="button secondary" href="https://github.com/acrazing/log-viewer"
+              >Star on GitHub</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Log Viewer</span>
+      <a href="https://github.com/acrazing/log-viewer">GitHub</a>
+      <a href="https://github.com/acrazing/log-viewer/issues">Issues</a>
+      <a href="https://chromewebstore.google.com/detail/log-viewer/lbnkfmnolbefifdccejjijdgdipnfaib"
+        >Chrome Web Store</a
+      >
+    </footer>
+  </body>
+</html>

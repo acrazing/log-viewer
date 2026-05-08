@@ -5,7 +5,7 @@
   "description": "Pretty-print raw JSON, ANSI logs, YAML, HTML, JS, CSS, and other source-like text directly in Chrome.",
   "private": true,
   "license": "MIT",
-  "homepage": "https://github.com/acrazing/log-viewer",
+  "homepage": "https://acrazing.github.io/log-viewer/",
   "repository": {
     "type": "git",
     "url": "https://github.com/acrazing/log-viewer.git"
@@ -16,6 +16,7 @@
   },
   "scripts": {
     "build": "node utils/build.js",
+    "build:site": "node utils/build-site.js",
     "start": "node utils/webserver.js",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
   },

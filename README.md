@@ -21,6 +21,8 @@ of recently viewed content.
 
 [![Chrome Extension](https://github.com/user-attachments/assets/ad7c5fd4-5b2d-4b68-b3ec-82e88d76b10e)](https://chromewebstore.google.com/detail/log-viewer/lbnkfmnolbefifdccejjijdgdipnfaib)
 
+Website: <https://acrazing.github.io/log-viewer/>
+
 ## Showcase
 
 <details open>
