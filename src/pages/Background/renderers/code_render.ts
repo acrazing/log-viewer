@@ -95,8 +95,16 @@ export function detectContentTypeExt(contentType: string) {
   return ext === 'bin' || ext === 'txt' ? '' : ext || '';
 }
 
+function detectContentExt(contentType: string) {
+  const raw = contentType.split(';')[0].trim().toLowerCase();
+  if (raw && !raw.includes('/') && /^[\w.+-]{1,32}$/.test(raw)) {
+    return raw.replace(/^\./, '');
+  }
+  return detectContentTypeExt(contentType);
+}
+
 export const codeRender: Renderer = async function* ({ content, contentType, url }) {
-  const ext = detectContentTypeExt(contentType) || detectUrlExt(url);
+  const ext = detectContentExt(contentType) || detectUrlExt(url);
   let parser = getPrettierParser(ext);
   if (parser) {
     try {

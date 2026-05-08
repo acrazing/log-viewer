@@ -1,35 +1,55 @@
 #json-view-container {
   all: unset;
+  --log-viewer-history-width: 260px;
+  --log-viewer-history-half-width: 130px;
+  --log-viewer-history-rail-width: 34px;
   position: fixed;
   top: 0;
-  left: 50%;
+  left: calc(50% - var(--log-viewer-history-half-width));
   right: 0;
   bottom: 0;
-  overflow: auto;
+  display: flex;
+  overflow: hidden;
   background: #121212;
   color: white;
   font-family: monospace;
   line-height: 1.5em;
   font-size: 12px;
   z-index: 999999;
-  padding: 20px;
   tab-size: 4em;
-  white-space: pre-wrap;
 }
 
-#json-view-container *, #json-view-container *:before, #json-view-container *:after {
+#json-view-container *,
+#json-view-container *:before,
+#json-view-container *:after {
   all: unset;
+  box-sizing: border-box;
 }
 
 #json-view-container.full {
   left: 0;
 }
 
-#json-view-container > pre {
+#json-view-container .log-viewer-main {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: auto;
+}
+
+#json-view-container .log-viewer-content {
+  display: block;
+  min-height: 100%;
+  padding: 20px;
+  white-space: pre-wrap;
+}
+
+#json-view-container .log-viewer-content > pre {
+  display: block;
   margin: 0;
 }
 
-#json-view-container > pre > code {
+#json-view-container .log-viewer-content > pre > code {
   counter-reset: step;
   counter-increment: step 0;
   white-space: normal;
@@ -38,34 +58,218 @@
   align-items: flex-start;
 }
 
-#json-view-container > pre > code > .line::before {
+#json-view-container .log-viewer-content > pre > code > .line::before {
   content: counter(step);
   counter-increment: step;
   width: 1em;
   padding-right: 1.5em;
   display: inline-block;
   text-align: right;
-  color: rgba(115, 138, 148, .4);
+  color: rgba(115, 138, 148, 0.4);
   cursor: pointer;
 }
 
-#json-view-container > pre > code > .line.closed::after {
+#json-view-container .log-viewer-content > pre > code > .line.closed::after {
   content: '...';
   padding-left: 1em;
   color: rgb(115, 138, 148);
   cursor: pointer;
 }
 
-#json-view-container > pre > code > .line {
+#json-view-container .log-viewer-content > pre > code > .line {
+  display: block;
   white-space: pre;
 }
 
-#json-view-container > pre > code > .line.hidden {
+#json-view-container .log-viewer-content > pre > code > .line.hidden {
   display: none;
 }
 
-#json-view-container > pre > code > .line.hidden {
+#json-view-container .log-viewer-history {
+  display: flex;
+  flex: 0 0 var(--log-viewer-history-width);
+  width: var(--log-viewer-history-width);
+  max-width: 42%;
+  min-width: 210px;
+  flex-direction: column;
+  border-left: 1px solid #2c2c2c;
+  background: #181818;
+  color: #e8e8e8;
+  overflow: hidden;
+}
+
+#json-view-container .log-viewer-history.collapsed {
+  flex-basis: var(--log-viewer-history-rail-width);
+  width: var(--log-viewer-history-rail-width);
+  min-width: var(--log-viewer-history-rail-width);
+  max-width: var(--log-viewer-history-rail-width);
+}
+
+#json-view-container .log-viewer-history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 14px 14px 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+
+#json-view-container .log-viewer-history.collapsed .log-viewer-history-header {
+  justify-content: center;
+  padding: 10px 6px;
+}
+
+#json-view-container .log-viewer-history-title {
+  display: block;
+}
+
+#json-view-container .log-viewer-history.collapsed .log-viewer-history-title,
+#json-view-container .log-viewer-history.collapsed .log-viewer-history-status,
+#json-view-container .log-viewer-history.collapsed .log-viewer-history-list {
   display: none;
+}
+
+#json-view-container .log-viewer-history-toggle {
+  display: inline-flex;
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: #b8bec5;
+  background: #242424;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 22px;
+}
+
+#json-view-container .log-viewer-history-toggle:hover {
+  color: #fff;
+  background: #303030;
+}
+
+#json-view-container .log-viewer-history-status {
+  display: block;
+  padding: 0 14px 10px;
+  color: #9fa6ad;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+#json-view-container .log-viewer-history-list {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  flex-direction: column;
+  gap: 6px;
+  overflow: auto;
+  padding: 0 8px 12px;
+}
+
+#json-view-container .log-viewer-history-item {
+  display: block;
+  width: 100%;
+  padding: 9px 8px;
+  border-radius: 6px;
+  color: #dcdcdc;
+  background: transparent;
+  cursor: pointer;
+}
+
+#json-view-container .log-viewer-history-item:hover,
+#json-view-container .log-viewer-history-item.active {
+  background: #252525;
+}
+
+#json-view-container .log-viewer-history-item.active {
+  box-shadow: inset 3px 0 0 #7aa2ff;
+}
+
+#json-view-container .log-viewer-history-toggle:focus-visible,
+#json-view-container .log-viewer-history-item:focus-visible,
+#json-view-container .log-viewer-history-delete:focus-visible {
+  outline: 1px solid #7aa2ff;
+  outline-offset: -1px;
+}
+
+#json-view-container .log-viewer-history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+#json-view-container .log-viewer-history-badges {
+  display: flex;
+  min-width: 0;
+  gap: 4px;
+  align-items: center;
+}
+
+#json-view-container .log-viewer-history-badge {
+  display: inline-block;
+  max-width: 86px;
+  overflow: hidden;
+  padding: 1px 5px;
+  border: 1px solid #414141;
+  border-radius: 4px;
+  color: #cfe1ff;
+  background: #202b3a;
+  font-size: 10px;
+  line-height: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#json-view-container .log-viewer-history-badge.source {
+  color: #d6edd0;
+  background: #203323;
+}
+
+#json-view-container .log-viewer-history-delete {
+  display: inline-flex;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: #a9a9a9;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+#json-view-container .log-viewer-history-delete:hover {
+  color: #fff;
+  background: #4a2024;
+}
+
+#json-view-container .log-viewer-history-excerpt {
+  display: -webkit-box;
+  overflow: hidden;
+  margin-top: 7px;
+  color: #f1f1f1;
+  font-size: 11px;
+  line-height: 15px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  white-space: normal;
+  word-break: break-word;
+}
+
+#json-view-container .log-viewer-history-meta {
+  display: block;
+  overflow: hidden;
+  margin-top: 6px;
+  color: #858b91;
+  font-size: 10px;
+  line-height: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #json-view-container a {

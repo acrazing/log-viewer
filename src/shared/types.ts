@@ -19,6 +19,40 @@ export interface ContextEvent {
   action: 'json-view' | 'ansi-view' | 'html-view' | 'code-view';
 }
 
+export type HistorySourceType = 'file' | 'code' | 'html' | 'clipboard' | 'selection' | 'node';
+
+export interface HistoryRecordInput {
+  time: number;
+  contentType: string;
+  sourceType: HistorySourceType;
+  excerpt: string;
+  content: string;
+  url: string;
+}
+
+export interface HistoryRecord extends HistoryRecordInput {
+  id: number;
+}
+
+export type HistoryListItem = Omit<HistoryRecord, 'content'>;
+
+export type HistoryAction =
+  | {
+      type: 'history-add';
+      record: HistoryRecordInput;
+    }
+  | {
+      type: 'history-list';
+    }
+  | {
+      type: 'history-get';
+      id: number;
+    }
+  | {
+      type: 'history-delete';
+      id: number;
+    };
+
 export interface JsonViewAction {
   type: 'json' | 'ansi' | 'code';
   content: string;

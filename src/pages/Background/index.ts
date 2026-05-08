@@ -1,5 +1,6 @@
 import {
   ContextEvent,
+  HistoryAction,
   JsonViewAction,
   JsonViewReadyAction,
   JsonViewReadyResponse,
@@ -11,6 +12,18 @@ import { ansiRender } from './renderers/ansi_render';
 import { homepage } from '../../../package.json';
 import { codeRender } from './renderers/code_render';
 import { errorContent } from './utils';
+import {
+  addHistoryRecord,
+  deleteHistoryRecord,
+  getHistoryRecord,
+  listHistoryRecords,
+} from './history';
+
+function messageError(e: any) {
+  return {
+    error: (e?.stack || e?.message || e) + '',
+  };
+}
 
 __webpack_public_path__ = chrome.runtime.getURL('/');
 
@@ -102,11 +115,39 @@ chrome.runtime.onConnect.addListener((port) => {
   });
 });
 
-chrome.runtime.onMessage.addListener((message: JsonViewReadyAction, sender, sendResponse) => {
-  if (!sender.tab?.id) {
-    return;
+chrome.runtime.onMessage.addListener(
+  (message: JsonViewReadyAction | HistoryAction, sender, sendResponse) => {
+    if (message.type === 'json-view-ready') {
+      if (!sender.tab?.id) {
+        return;
+      }
+      const contentType = contentTypeMap.get(sender.tab.id) ?? 'text/html';
+      contentTypeMap.delete(sender.tab.id);
+      sendResponse({ contentType } as JsonViewReadyResponse);
+      return;
+    }
+
+    if (message.type === 'history-add') {
+      addHistoryRecord(message.record).then(sendResponse, (e) => sendResponse(messageError(e)));
+      return true;
+    }
+
+    if (message.type === 'history-list') {
+      listHistoryRecords().then(sendResponse, (e) => sendResponse(messageError(e)));
+      return true;
+    }
+
+    if (message.type === 'history-get') {
+      getHistoryRecord(message.id).then(sendResponse, (e) => sendResponse(messageError(e)));
+      return true;
+    }
+
+    if (message.type === 'history-delete') {
+      deleteHistoryRecord(message.id).then(
+        () => sendResponse({ ok: true }),
+        (e) => sendResponse(messageError(e))
+      );
+      return true;
+    }
   }
-  const contentType = contentTypeMap.get(sender.tab.id) ?? 'text/html';
-  contentTypeMap.delete(sender.tab.id);
-  sendResponse({ contentType } as JsonViewReadyResponse);
-});
+);
