@@ -24,3 +24,4 @@ secrets.*.js
 *.pem
 
 /json-dom-node-*
+dist/

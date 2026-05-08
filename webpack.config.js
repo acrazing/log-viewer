@@ -70,7 +70,7 @@ const options = {
   resolve: {
     extensions: fileExtensions
       .map((extension) => '.' + extension)
-      .concat(['.js', '.jsx', '.ts', '.tsx', '.css']),
+      .concat(['.ts', '.tsx', '.js', '.jsx', '.css']),
   },
   plugins: [
     new CleanWebpackPlugin({ verbose: false }),

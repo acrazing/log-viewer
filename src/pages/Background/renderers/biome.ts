@@ -3,9 +3,9 @@
  * @author junbao <junbao@moego.pet>
  */
 
-import init, { type BiomePath, type RuleCategories, Workspace } from '@biomejs/wasm-web';
+import init, { type BiomePath, Workspace } from '@biomejs/wasm-web';
 
-let lazy: Promise<any> | undefined = void 0;
+let lazy: Promise<unknown> | undefined = void 0;
 
 export const biomeFormat = async (content: string, ext: string): Promise<string> => {
   if (!lazy) {
@@ -13,19 +13,19 @@ export const biomeFormat = async (content: string, ext: string): Promise<string>
   }
   await lazy;
   const ws = new Workspace();
-  ws.registerProjectFolder({ setAsCurrentWorkspace: true });
+  const { projectKey } = ws.openProject({ openUninitialized: true, path: '/' });
   ws.updateSettings({
+    projectKey,
     configuration: {
       files: { maxSize: 100 << 20 },
     },
-    gitignore_matches: [],
   });
-  const filePath: BiomePath = { kind: ['Handleable'], was_written: false, path: 'main.' + ext };
+  const filePath: BiomePath = `/main.${ext}`;
   ws.openFile({
+    projectKey,
     path: filePath,
-    version: 0,
-    content: content,
+    content: { content, type: 'fromClient', version: 0 },
   });
-  const printed = ws.formatFile({ path: filePath });
+  const printed = ws.formatFile({ projectKey, path: filePath });
   return printed.code;
 };

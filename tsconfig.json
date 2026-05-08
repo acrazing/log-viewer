@@ -15,8 +15,10 @@
     "noEmit": false,
     "jsx": "react",
     "importHelpers": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "types": ["chrome", "webpack-env"],
+    "outDir": "./dist"
   },
   "include": ["src"],
-  "exclude": ["build", "node_modules"]
+  "exclude": ["build", "dist", "node_modules"]
 }

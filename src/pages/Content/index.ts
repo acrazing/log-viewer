@@ -115,6 +115,18 @@ let activeHistoryId: number | undefined;
 let historyCollapsed = false;
 let lastHistoryItems: HistoryListItem[] = [];
 
+function countLines(content: string) {
+  return content ? content.split(/\r\n|\r|\n/).length : 1;
+}
+
+function lineNumberWidth(lineCount: number) {
+  return `${Math.max(1, String(Math.max(1, lineCount)).length)}ch`;
+}
+
+function setLineNumberWidth(lineCount: number) {
+  contentElem?.style.setProperty('--log-viewer-line-number-width', lineNumberWidth(lineCount));
+}
+
 function sendRuntimeMessage<T>(message: HistoryAction | JsonViewReadyAction): Promise<T> {
   return chrome.runtime.sendMessage(message).then((res) => {
     if (res?.error) {
@@ -609,8 +621,10 @@ async function showJsonView(
   if (styleElem) {
     styleElem.innerHTML = commonStyle;
   }
+  const sourceLineCount = countLines(content);
   if (contentElem) {
     contentElem.innerHTML = '';
+    setLineNumberWidth(sourceLineCount);
   }
   port?.disconnect();
   port = chrome.runtime.connect();
@@ -618,6 +632,7 @@ async function showJsonView(
     port = void 0;
   });
   const parts: string[] = [''];
+  let renderedLineCount = 0;
   port.onMessage.addListener((res: JsonViewResponse) => {
     if (!contentElem) {
       return;
@@ -631,10 +646,15 @@ async function showJsonView(
       div.innerHTML = res.content;
       const inCode = div.querySelector(':scope > pre > code');
       const toCode = contentElem.querySelector(':scope > pre > code');
+      const renderedLines = inCode?.querySelectorAll('.line').length || 0;
       if (inCode && toCode) {
         toCode.append(...inCode.childNodes);
       } else {
         contentElem.append(...div.childNodes);
+      }
+      renderedLineCount += renderedLines;
+      if (renderedLineCount) {
+        setLineNumberWidth(Math.max(sourceLineCount, renderedLineCount));
       }
     }
   });
