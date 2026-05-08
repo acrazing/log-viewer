@@ -45,16 +45,16 @@ Use screenshots that show the problem and the outcome quickly. Recommended order
 
 1. JSON error payload with stack trace, formatted and highlighted.
 2. ANSI log with terminal colors rendered in Chrome.
-3. YAML/config file auto-formatted from a browser page.
-4. History sidebar showing recent local inspections.
+3. History sidebar showing recent local inspections.
+4. YAML/config file auto-formatted from a browser page.
 5. Context menu or shortcut workflow.
 
 Suggested captions:
 
 - "Pretty-print raw JSON and error stack traces."
 - "Render ANSI colors from CI and terminal logs."
-- "Auto-format YAML, JSON, JavaScript, CSS, Markdown, SQL, diffs, and more."
 - "Reopen recent local history entries without uploading content."
+- "Auto-format YAML, JSON, JavaScript, CSS, Markdown, SQL, diffs, and more."
 - "Use shortcuts or the context menu from any page."
 
 ## Promotional Description

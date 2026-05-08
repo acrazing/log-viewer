@@ -41,9 +41,9 @@ Website: <https://rawlens.github.io/rawlens/>
 </details>
 
 <details>
-<summary>Source-Like Text</summary>
+<summary>Local History</summary>
 
-![YAML View](./src/assets/img/screen-yaml-full.png)
+![History Panel](./src/assets/img/screen-yaml-full.png)
 
 </details>
 
